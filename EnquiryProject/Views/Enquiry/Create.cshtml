@@ -1,0 +1,46 @@
+﻿
+<div class="container">
+
+    <div class="col-sm-6">
+        <form action="/Enquiry/Add" method="post">
+
+            <div class="form-group">
+                <label for="FirstName">FirstName</label>
+                <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="Enter FirstName">
+            </div>
+            <div class="form-group">
+                <label for="LastName">LastName</label>
+                <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Enter LastName">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label for="MobileNumber">MobileNumber</label>
+                <input type="text" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Enter MobileNumber">
+            </div>
+            <div class="form-group">
+                <label for="HomeAddress">HomeAddress</label>
+                <input type="text" class="form-control" id="HomeAddress" name="HomeAddress" placeholder="Enter HomeAddress">
+            </div>
+            <div class="form-group">
+                @*<label for="HomeAddress">HomeAddress</label>*@
+                @*@Html.DropDownListFor(ViewBag.genderddl, SelectList, new { @class = "form-control" })*@
+                @*@Html.DropDownList("Name", ViewBag.genderddl, "Dropdown", new { @class = "form-control" })*@
+                <select id="GenderId" name="GenderId">
+                    <option value="0" selected="selected"> ---Choose Gender--- </option>
+                    @foreach (var obj in ViewBag.genderddl)
+                    {
+                        <option value="@obj.Value">@obj.Text </option>
+
+
+                    }
+
+                </select>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
