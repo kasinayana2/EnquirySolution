@@ -31,7 +31,8 @@ namespace EnquiryProject.Models
                         Email = rdr["Email"].ToString(),
                         MobileNumber = rdr["MobileNumber"].ToString(),
                         HomeAddress = rdr["HomeAddress"].ToString(),
-                        GenderId = Convert.ToInt32(rdr["GenderId"]),
+                        GenderName = rdr["GenderName"].ToString(),
+                        ReferenceName = rdr["ReferenceName"].ToString()
 
                     });
                 }
@@ -52,9 +53,9 @@ namespace EnquiryProject.Models
                 com.Parameters.AddWithValue("@MobileNumber", en.MobileNumber);
                 com.Parameters.AddWithValue("@HomeAddress", en.HomeAddress);
                 com.Parameters.AddWithValue("@GenderId", en.GenderId);
+                com.Parameters.AddWithValue("@ReferenceId", en.ReferenceId);
                 com.Parameters.AddWithValue("@DatePublished", DateTime.Now);
                 com.Parameters.AddWithValue("@DateCreated", DateTime.Now);
-                com.Parameters.AddWithValue("@Action", "Insert");
                 i = com.ExecuteNonQuery();
             }
             return i;
@@ -71,15 +72,14 @@ namespace EnquiryProject.Models
                 SqlDataReader rdr = com.ExecuteReader();
                 while (rdr.Read())
                 {
-
-
                     en.EnquiryId = Convert.ToInt32(rdr["EnquiryId"].ToString());
                     en.FirstName = rdr["FirstName"].ToString();
                     en.LastName = rdr["LastName"].ToString();
                     en.Email = rdr["Email"].ToString();
                     en.MobileNumber = rdr["MobileNumber"].ToString();
                     en.HomeAddress = rdr["HomeAddress"].ToString();
-                    //en.GenderId = Convert.ToInt32(rdr["GenderId"]);
+                    en.GenderId = Convert.ToInt32(rdr["GenderId"]);
+                    en.ReferenceId = Convert.ToInt32(rdr["ReferenceId"].ToString());
                 }
                 return en;
             }
@@ -93,20 +93,19 @@ namespace EnquiryProject.Models
                 SqlCommand com = new SqlCommand("uspUpdateEnquiryById", con);
                 com.CommandType = CommandType.StoredProcedure;
                 com.Parameters.AddWithValue("@EnquiryId", en.EnquiryId);
-                //com.Parameters.AddWithValue("@GenderId", en.GenderId);
+                com.Parameters.AddWithValue("@GenderId", en.GenderId);
                 com.Parameters.AddWithValue("@FirstName", en.FirstName);
                 com.Parameters.AddWithValue("@LastName", en.LastName);
                 com.Parameters.AddWithValue("@Email", en.Email);
                 com.Parameters.AddWithValue("@MobileNumber", en.MobileNumber);
                 com.Parameters.AddWithValue("@HomeAddress", en.HomeAddress);
-                com.Parameters.AddWithValue("@UpdatedBy","kasi");
-                com.Parameters.AddWithValue("@LastUpdated",DateTime.Now);
-                com.Parameters.AddWithValue("@Action", "Update");
+                com.Parameters.AddWithValue("@ReferenceId", en.ReferenceId);
+                com.Parameters.AddWithValue("@UpdatedBy", "kasi");
+                com.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
                 i = com.ExecuteNonQuery();
             }
             return i;
         }
-
         public List<SelectListItem> GetGenderDropDown()
         {
             List<SelectListItem> genderddl = new List<SelectListItem>();
@@ -129,5 +128,31 @@ namespace EnquiryProject.Models
                 return genderddl;
             }
         }
+        public List<SelectListItem> GetReferenceDropDown()
+        {
+            List<SelectListItem> Referenceddl = new List<SelectListItem>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("uspGetReference", con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rdr = com.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Referenceddl.Add(new SelectListItem
+                    {
+
+                        Value = rdr["ReferenceId"].ToString(),
+                        Text = rdr["ReferenceName"].ToString(),
+
+                    });
+                }
+                return Referenceddl;
+            }
+
+
+        }
+
+
     }
 }

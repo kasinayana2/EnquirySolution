@@ -19,6 +19,8 @@ namespace EnquiryProject.Controllers
         public ActionResult Create()
         {
             ViewBag.genderddl = enDb.GetGenderDropDown();
+            ViewBag.Referenceddl = enDb.GetReferenceDropDown();
+
             return View();
         }
         public ActionResult Add(Enquiry en)
@@ -30,7 +32,8 @@ namespace EnquiryProject.Controllers
         }
         public ActionResult Edit(int id)
         {
-            
+            ViewBag.genderddl = enDb.GetGenderDropDown();
+            ViewBag.Referenceddl = enDb.GetReferenceDropDown();
             Enquiry en = new Enquiry();
             en = enDb.GetEnquiryById(id);
             return View(en);

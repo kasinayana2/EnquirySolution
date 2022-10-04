@@ -1,4 +1,6 @@
 ﻿
+
+
 <div class="container">
 
     <div class="col-sm-6">
@@ -25,20 +27,22 @@
                 <input type="text" class="form-control" id="HomeAddress" name="HomeAddress" placeholder="Enter HomeAddress">
             </div>
             <div class="form-group">
-                @*<label for="HomeAddress">HomeAddress</label>*@
-                @*@Html.DropDownListFor(ViewBag.genderddl, SelectList, new { @class = "form-control" })*@
-                @*@Html.DropDownList("Name", ViewBag.genderddl, "Dropdown", new { @class = "form-control" })*@
                 <select id="GenderId" name="GenderId">
                     <option value="0" selected="selected"> ---Choose Gender--- </option>
                     @foreach (var obj in ViewBag.genderddl)
-                    {
+                     {
                         <option value="@obj.Value">@obj.Text </option>
-
-
-                    }
-
+                     }   
                 </select>
-
+            </div>
+            <div class="form-group">
+                <select id="ReferenceId" name="ReferenceId">
+                    <option value="0" selected="selected"> ---Choose Reference--- </option>
+                    @foreach (var obj in ViewBag.Referenceddl)
+                     {
+                        <option value="@obj.Value">@obj.Text </option>
+                     }
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
