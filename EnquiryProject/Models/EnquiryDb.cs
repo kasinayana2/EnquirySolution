@@ -153,6 +153,25 @@ namespace EnquiryProject.Models
 
         }
 
-
+        public List<EnquiryReference> GetEnquiryReferenceList()
+        {
+            List<EnquiryReference> lst = new List<EnquiryReference>();
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                con.Open();
+                SqlCommand com = new SqlCommand("uspGetEnquiryReference", con);
+                com.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rdr = com.ExecuteReader();
+                while (rdr.Read())
+                {
+                    lst.Add(new EnquiryReference
+                    {
+                        EnquiryId = Convert.ToInt32(rdr["EnquiryId"].ToString()),
+                        ReferenceId = Convert.ToInt32(rdr["ReferenceId"].ToString())
+                    });
+                }
+                return lst;
+            }
+        }
     }
 }

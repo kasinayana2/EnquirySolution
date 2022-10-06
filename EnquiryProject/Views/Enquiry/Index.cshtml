@@ -23,8 +23,8 @@
 
             <tbody>
 
-                @foreach (var en in Model)
-                {
+              @foreach (var en in Model)
+               {
                 <tr>
                     <td>@en.FirstName</td>
                     <td>@en.LastName</td>
@@ -37,7 +37,7 @@
                         <a class="btn btn-primary" href="/Enquiry/Edit/@en.EnquiryId" role="button">Edit</a>
                     </td>
                 </tr>
-                }
+               }
             </tbody>
 
         </table>
