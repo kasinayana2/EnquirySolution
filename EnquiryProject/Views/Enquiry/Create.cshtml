@@ -26,19 +26,33 @@
                 <label for="HomeAddress">HomeAddress</label>
                 <input type="text" class="form-control" id="HomeAddress" name="HomeAddress" placeholder="Enter HomeAddress">
             </div>
+
             <div class="form-group">
-                <div class="dropdown">
-                    <label for="GenderId">Gender</label>
-                    <select id="GenderId" name="GenderId">
-                        <option value="0" selected="selected"> ---Choose Gender--- </option>
-                        @foreach (var obj in ViewBag.genderddl)
-                        {
-                            <option value="@obj.Value">@obj.Text </option>
-                        }
-                    </select>
-                </div>
-                </div>
-            <div class="form-group">
+                <label class="radio-inline">Gender</label>
+                @foreach (var gender in ViewBag.genderddl)
+                {
+                    <label class="radio-inline">
+                        <input id="GenderId" name="GenderId" value="@gender.Value" type="radio">
+                        @gender.Text
+
+                    </label>
+                }
+            </div>
+
+            <div class="form-horizontal">
+                <h4>Select your Reference</h4>
+                @foreach (var Reference in ViewBag.Referenceddl)
+                {
+                    <input id="ReferenceId"
+                           name="ReferenceId"
+                           type="checkbox"
+                           value="@Reference.Value" />
+                    @Reference.Text <br />
+                }
+
+            </div>
+
+            @*<div class="form-group">
                 <div class="dropdown">
                     <label for="ReferenceId">Reference</label>
                     <select id="ReferenceId" name="ReferenceId">
@@ -49,8 +63,8 @@
                         }
                     </select>
                 </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+            </div>*@
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
