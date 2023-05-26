@@ -1,0 +1,45 @@
+﻿@model List<EnquiryProject.Models.Enquiry>
+
+<div><br /><br />
+
+    <a class="btn btn-primary" href="/Enquiry/Create" role="button">Add</a>
+
+
+</div>
+<div class="container">
+    <div class="col-sm-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">MobileNumber</th>
+                    <th scope="col">HomeAddress</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Reference</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+              @foreach (var en in Model)
+               {
+                <tr>
+                    <td>@en.FirstName</td>
+                    <td>@en.LastName</td>
+                    <td>@en.Email</td>
+                    <td>@en.MobileNumber</td>
+                    <td>@en.HomeAddress</td>
+                    <td>@en.GenderName</td>
+                    <td>@en.ReferenceName</td>
+                    <td>
+                        <a class="btn btn-primary" href="/Enquiry/Edit/@en.EnquiryId" role="button">Edit</a>
+                    </td>
+                </tr>
+               }
+            </tbody>
+
+        </table>
+    </div>
+</div>

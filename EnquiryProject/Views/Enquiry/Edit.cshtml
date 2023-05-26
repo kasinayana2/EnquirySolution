@@ -1,0 +1,75 @@
+﻿@model EnquiryProject.Models.Enquiry
+@using System.Web.Mvc
+
+ 
+<div class="container">
+
+    <div class="col-sm-6">
+        <form action="/Enquiry/Update" method="post">
+            <div class="form-group">
+
+                <input type="hidden" class="form-control" id="EnquiryId" name="EnquiryId" value="@Model.EnquiryId">
+            </div>
+
+            <div class="form-group">
+                <label for="FirstName">FirstName</label>
+                <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.FirstName" placeholder="Enter FirstName">
+            </div>
+            <div class="form-group">
+                <label for="LastName">LastName</label>
+                <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName" placeholder="Enter LastName">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label for="MobileNumber">MobileNumber</label>
+                <input type="text" class="form-control" id="MobileNumber" name="MobileNumber" value="@Model.MobileNumber" placeholder="Enter MobileNumber">
+            </div>
+            <div class="form-group">
+                <label for="HomeAddress">HomeAddress</label>
+                <input type="text" class="form-control" id="HomeAddress" name="HomeAddress" value="@Model.HomeAddress" placeholder="Enter HomeAddress">
+            </div>
+            @*<div class="form-group">
+            <div class="dropdown">
+                <label for="GenderId">Gender</label>
+                <select id="GenderId" name="GenderId">
+                    <option value="0"> ---Choose Gender--- </option>
+                    @foreach (var obj in ViewBag.genderddl)
+                    {
+                        <option value="@obj.Value" selected="@obj.Selected">@obj.Text </option>
+                    }
+                </select>
+            </div>
+        </div>*@
+            <div class="form-group">
+                <label class="radio-inline">Gender</label>
+                @foreach (var gender in ViewBag.genderddl)
+                {
+                    <label class="radio-inline">
+                        <input id="GenderId" name="GenderId" checked="@gender.Selected" value="@gender.Value" type="radio">
+                        @gender.Text
+
+                    </label>
+                }
+            </div>
+
+            <div class="form-group">
+                <div class="dropdown">
+                    <label for="ReferenceId">Reference</label>
+                    <select id="ReferenceId" name="ReferenceId">
+                        <option value="0">---Reference---</option>
+                        @foreach (var obj in ViewBag.Referenceddl)
+                        {
+                            <option value="@obj.Value" selected="@obj.Selected">@obj.Text </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
